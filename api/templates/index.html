@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="https://unpkg.com/filepond-plugin-image-preview"></script>
+		<script src="https://unpkg.com/filepond"></script>
+		<script src="https://unpkg.com/vue"></script>
+		<script src="https://unpkg.com/vue-filepond@6"></script>
+		<link rel="stylesheet" href="https://unpkg.com/filepond/dist/filepond.min.css" />
+		<link rel="stylesheet" href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css" />
+		<style type="text/css">
+			.result{
+				text-align: center;
+				font-weight: bold;
+				font-size: 18px;
+				margin-top: 20px;
+			}
+			.bad-result {
+				color: red;
+			}
+			.upload-box{
+				width: 300px;
+				height: 400px;
+				margin: 0 auto;
+				margin-top: 40px;
+			}
+			#pond{
+				overflow: hidden;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<div :class="[{'bad-result': haveTumor}, 'result']">
+				{{'{{result}}'}}
+			</div>
+			<audio :src="audio_path" autoplay>
+				当前浏览器不支持audio
+			</audio>
+			<div class="upload-box">
+				<file-pond @addfile="addfile" accepted-file-types="image/jpeg, image/png"></file-pond>
+			</div>
+			
+		</div>
+
+		<script>
+			const app = new Vue({
+				el: "#app",
+				data: {
+					result: "",
+					audio_path: '',
+					haveTumor: false
+				},
+				components: {
+					FilePond: vueFilePond.default(FilePondPluginImagePreview),
+				},
+				methods: {
+					addfile: function(e,res){
+						if(!e){
+							this.uploadImage(res.file)
+						}
+					},
+					uploadImage: function(file) {
+						const URL = '/upload';
+
+						let data = new FormData();
+						data.append('name', 'my-picture');
+						data.append('file', file);
+
+						let config = {
+							header: {
+								'Content-Type': 'image/png'
+							}
+						}
+						this.result = "Please wait..."
+						axios.post(
+							URL,
+							data,
+							config
+						).then(
+							response => {
+								console.log(response);
+								if(response.data.code === 0){
+									if(response.data.msg == 'No Tumor'){
+										this.haveTumor = false
+									}else{
+										this.haveTumor = true
+									}
+									this.result = `The result is: ${response.data.msg.toUpperCase()}`;
+									this.audio_path = `/static/${response.data.msg.toLowerCase().replace(' ','_')}.wav`
+								}
+							}
+						)
+					},
+				}
+			})
+		</script>
+	</body>
+
+</html>
