@@ -4,8 +4,8 @@
 这个应用使用Vue.js作为前端开发的框架，提供user-friendly的用户界面，上传模块使用的是filepond插件，使用Flask作为后端，用于预测的模型运行在后端，后端主要的工作是接收前端发来的图片，用模型进行预测，最后返回结果到前端。
 
 ## demo video
-[百度网盘链接](https://pan.baidu.com/s/1bI5jmV0dyilwzVZBvPNhYQ) 提取码：yxq3
-[Google Drive](https://drive.google.com/file/d/1zIVsKJaID-uYV-A2YIyqUOfTCi5DGtju/view?usp=sharing)
+- [百度网盘链接](https://pan.baidu.com/s/1bI5jmV0dyilwzVZBvPNhYQ) 提取码：yxq3
+- [Google Drive](https://drive.google.com/file/d/1zIVsKJaID-uYV-A2YIyqUOfTCi5DGtju/view?usp=sharing)
 
 ## quick start
 我强烈建议使用kaggle或者google colab运行demo，因为这样不需要在本地配置环境，而且使用统一的环境，可以避免安装环境时出现错误。如果使用kaggle或者google colab运行demo，可以使用这个[notebook](./brain_tumor_mri_classification_tensorflow.ipynb).
