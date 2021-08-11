@@ -8,7 +8,7 @@
 - [Google Drive](https://drive.google.com/file/d/1zIVsKJaID-uYV-A2YIyqUOfTCi5DGtju/view?usp=sharing)
 
 ## quick start
-我强烈建议使用kaggle或者google colab运行demo，因为这样不需要在本地配置环境，而且使用统一的环境，可以避免安装环境时出现错误。如果使用kaggle或者google colab运行demo，可以使用这个[notebook](./brain_tumor_mri_classification_tensorflow.ipynb).
+我强烈建议使用kaggle或者google colab运行demo，因为这样不需要在本地配置环境，而且使用统一的环境，可以避免安装环境时出现错误。如果使用kaggle或者google colab运行demo，可以使用这个[notebook](./my_medical_app_demo.ipynb).
 
 以下是本地安装的方法。
 ```cmd
@@ -17,7 +17,7 @@ python3 main.py
 ```
 
 ## model train tutorial
-如果你想从头开始训练自己的脑肿瘤检测模型，我推荐你看[notebook](./my_medical_app_demo.ipynb),里面包含了数据准备，数据预处理，模型训练，模型预测等end-to-end的详细过程。
+如果你想从头开始训练自己的脑肿瘤检测模型，我推荐你看[notebook](./brain_tumor_mri_classification_tensorflow.ipynb),里面包含了数据准备，数据预处理，模型训练，模型预测等end-to-end的详细过程。
 
 ## todo
 - 提高模型的精度，现在是98%，是否可以提升到99%甚至更高？
